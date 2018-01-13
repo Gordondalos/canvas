@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'gordon-canvas',
@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CanvasComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
+  }
+
+  selected(elem) {
+    console.log(elem.nativeElement);
   }
 
 }

@@ -7,6 +7,8 @@ import { ToolbarLeftComponent } from './toolbar-left/toolbar-left.component';
 import { ToolbarBottomComponent } from './toolbar-bottom/toolbar-bottom.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { CanvasComponent } from './canvas/canvas.component';
+import { ChoiseDirective } from './directives/choise.directive';
+import {GordonEventService} from './services/gordon-event.service';
 
 
 
@@ -17,6 +19,7 @@ import { CanvasComponent } from './canvas/canvas.component';
     ToolbarLeftComponent,
     ToolbarBottomComponent,
     CanvasComponent,
+    ChoiseDirective,
   ],
   imports: [
     BrowserModule,
@@ -26,7 +29,7 @@ import { CanvasComponent } from './canvas/canvas.component';
     ColorPickerModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [GordonEventService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

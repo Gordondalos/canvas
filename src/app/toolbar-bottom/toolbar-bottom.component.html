@@ -1,22 +1,20 @@
 <div class="row">
-  <div class="col-sm-3">
-    <p-slider [(ngModel)]="width" ></p-slider>
+  <div class="col-sm-3 mb-4">
+    <p-slider [(ngModel)]="width" (ngModelChange)="widthChange($event)"></p-slider>
     <small class="text-muted">Изменение ширины</small>
   </div>
   <div class="col-sm-1">
     <span class="size-width">{{width}} %</span>
   </div>
-  <div class="col-sm-1">
-  </div>
 </div>
 
 <div class="row">
   <div class="col-sm-3">
-    <p-slider [(ngModel)]="height" ></p-slider>
+    <p-slider [(ngModel)]="height" (ngModelChange)="heightChange($event)"></p-slider>
     <small class="text-muted">Изменение высоты</small>
   </div>
-  <div class="col-sm-3">
-    <span class="size-width">{{height}} %</span>
+  <div class="col-sm-1">
+    <span class="size-width">{{height}} px</span>
   </div>
 </div>
 

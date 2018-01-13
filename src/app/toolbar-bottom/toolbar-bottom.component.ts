@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {GordonEventService} from '../services/gordon-event.service';
 
 @Component({
   selector: 'gordon-toolbar-bottom',
@@ -7,12 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ToolbarBottomComponent implements OnInit {
 
-  width: number = 0;
-  height: number = 0;
+  width = 0;
+  height = 0;
 
-  constructor() { }
+  constructor(private gordonEventService: GordonEventService) {
+  }
 
   ngOnInit() {
+  }
+
+  heightChange(size) {
+    this.gordonEventService.setHeight.next(size);
+  }
+
+  widthChange(size) {
+    this.gordonEventService.setWidth.next(size);
   }
 
 }

@@ -11,7 +11,7 @@ import {ChoiseDirective} from './directives/choise.directive';
 import {GordonEventService} from './services/gordon-event.service';
 import {DataService} from './services/data.service';
 import {HttpClientModule} from '@angular/common/http';
-import { MyComponent } from './my/my.component';
+
 
 
 @NgModule({
@@ -21,8 +21,7 @@ import { MyComponent } from './my/my.component';
     ToolbarBottomComponent,
     CanvasComponent,
     ChoiseDirective,
-    MyComponent,
-  ],
+    ],
   imports: [
     BrowserModule,
     SliderModule,

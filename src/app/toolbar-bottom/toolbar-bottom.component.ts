@@ -12,6 +12,7 @@ export class ToolbarBottomComponent implements OnInit {
   height = 0;
 
   constructor(private gordonEventService: GordonEventService) {
+
   }
 
   ngOnInit() {

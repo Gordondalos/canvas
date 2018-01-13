@@ -13,6 +13,8 @@ export class ChoiseDirective {
   width = 0;
   mouse: MouseModel;
 
+  onse = true;
+
   constructor(private el: ElementRef, private gordonEventService: GordonEventService) {
     this.gordonEventService.setHeight.subscribe((height) => {
       this.setHeight(height);
@@ -47,7 +49,7 @@ export class ChoiseDirective {
     }
   }
 
-  removeSelected(){
+  removeSelected() {
     const selectedElemets = document.getElementsByClassName('selected');
     _.each(selectedElemets, (item) => {
       item.classList.remove('selected');
@@ -67,8 +69,8 @@ export class ChoiseDirective {
     const element: any = document.getElementsByClassName('selected')[0];
     if (element) {
       if (this.mouse.mouseDown) {
-        element.style.left = this.mouse.x - element.getBoundingClientRect().width * 1.5   + 'px';
-        element.style.top = this.mouse.y - element.getBoundingClientRect().height  + 'px';
+        element.style.left = this.mouse.x - element.getBoundingClientRect().width * 1.5 + 'px';
+        element.style.top = this.mouse.y - element.getBoundingClientRect().height + 'px';
       }
     }
 
@@ -101,8 +103,13 @@ export class ChoiseDirective {
     if (this.el.nativeElement.contains(event.target)) {
       this.removeSelected();
       this.el.nativeElement.classList.toggle('selected');
-      this.height = this.el.nativeElement.offsetHeight;
-      this.width = this.el.nativeElement.offsetWidth;
+       if (this.onse) {
+        this.height = this.el.nativeElement.offsetHeight;
+        this.width = this.el.nativeElement.offsetWidth;
+        this.onse = false;
+      }
     }
   }
+
+
 }

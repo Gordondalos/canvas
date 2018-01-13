@@ -13,6 +13,18 @@ body .ui-inputtext {
 }
 
 .selected {
-  border: 1px dashed $gray-light
+  border: 3px dashed $red;
+  position: absolute;
+  &:hover{
+    cursor: grab;
+  }
+}
+
+.moving {
+  cursor: grabbing;
+}
+
+.use {
+  position: absolute;
 }
 

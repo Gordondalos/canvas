@@ -33,6 +33,7 @@ export class ChoiseDirective {
       this.mouseUp();
     });
     this.gordonEventService.moveMouse.subscribe((mouse) => {
+      console.log(mouse);
       this.mouse = mouse;
       this.mouseMove();
     });

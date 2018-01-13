@@ -8,7 +8,7 @@ import {EscapeHtmlPipe} from '../pipes/keephtml.pipe';
 @Component({
   selector: 'gordon-canvas',
   templateUrl: './canvas.component.html',
-  styleUrls: ['./canvas.component.scss']
+  // styleUrls: ['./canvas.component.scss']
 })
 export class CanvasComponent implements OnInit {
 
@@ -25,29 +25,38 @@ export class CanvasComponent implements OnInit {
   data: any;
 
 
-  constructor(private compiler: Compiler,
-              elementRef: ElementRef,
-              private gordonEventService: GordonEventService) {
-    this.el = elementRef.nativeElement;
+  constructor(
+    private compiler: Compiler,
+    private gordonEventService: GordonEventService) {
     this.gordonEventService.setNewData.subscribe((data) => {
       this.addData(data);
     });
   }
 
   addData(data) {
-    this.dynamicComponent = this.createNewComponent(JSON.stringify(data), this.gordonEventService);
+    this.dynamicComponent = this.createNewComponent(JSON.stringify(data));
     this.dynamicModule = this.compiler.compileModuleSync(this.createComponentModule(this.dynamicComponent));
   }
 
-  protected createNewComponent(data: any, gordonEventService) {
+  protected createNewComponent(data: any) {
     @Component({
       selector: 'gordon-dynamic-component',
       template: '<div [innerHtml]="text|keepHtml"></div>',
+      styles: [':host {\n' +
+      '  background: rgba(248, 206, 0, 0.33);\n' +
+      '  width: calc(100vw - 120px);\n' +
+      '  height: calc(100vh - 120px);\n' +
+      '  position: absolute;\n' +
+      '  left: 120px;\n' +
+      '  top: 0;\n' +
+      '  padding: 1rem;\n' +
+      '  z-index: 0;\n' +
+      '}']
     })
 
     class DynamicComponent implements OnInit {
       text: any;
-      gordonEventService: any;
+
 
       mouse: MouseModel = {
         x: 0,
@@ -55,14 +64,18 @@ export class CanvasComponent implements OnInit {
         mouseDown: false
       };
 
-      el: HTMLElement;
+      el: any;
       data: any;
 
+      constructor(
+        elementRef: ElementRef,
+        private gordonEventService: GordonEventService) {
+        this.el = elementRef.nativeElement;
+      }
+
       ngOnInit() {
-        this.gordonEventService = gordonEventService;
-        const div =  this.addData(JSON.parse(data)).outerHTML;
-        this.text = div;
-        console.log(this.text);
+        this.el = this.addData(JSON.parse(data)).outerHTML;
+        this.text = this.el;
       }
 
       addData(data) {
@@ -105,7 +118,6 @@ export class CanvasComponent implements OnInit {
         this.gordonEventService.removeSelected.next();
       }
 
-
       @HostListener('mouseup')
       onMouseup() {
         this.mouse.mouseDown = false;
@@ -117,6 +129,7 @@ export class CanvasComponent implements OnInit {
         this.mouse.x = event.pageX;
         this.mouse.y = event.pageY;
         this.gordonEventService.moveMouse.next(this.mouse);
+         console.log(this.mouse);
       }
 
       @HostListener('mousedown', ['$event'])
@@ -149,30 +162,30 @@ export class CanvasComponent implements OnInit {
   ngOnInit() {
   }
 
-  @HostListener('dblclick')
-  ondblclick() {
-    this.gordonEventService.removeSelected.next();
-  }
-
-
-  @HostListener('mouseup')
-  onMouseup() {
-    this.mouse.mouseDown = false;
-    this.gordonEventService.mouseUp.next(this.mouse);
-  }
-
-  @HostListener('mousemove', ['$event'])
-  onMousemove(event: MouseEvent) {
-    this.mouse.x = event.pageX;
-    this.mouse.y = event.pageY;
-    this.gordonEventService.moveMouse.next(this.mouse);
-  }
-
-  @HostListener('mousedown', ['$event'])
-  onMousedown(event) {
-    this.mouse.mouseDown = true;
-    this.gordonEventService.mouseDown.next(this.mouse);
-  }
+  // @HostListener('dblclick')
+  // ondblclick() {
+  //   this.gordonEventService.removeSelected.next();
+  // }
+  //
+  //
+  // @HostListener('mouseup')
+  // onMouseup() {
+  //   this.mouse.mouseDown = false;
+  //   this.gordonEventService.mouseUp.next(this.mouse);
+  // }
+  //
+  // @HostListener('mousemove', ['$event'])
+  // onMousemove(event: MouseEvent) {
+  //   this.mouse.x = event.pageX;
+  //   this.mouse.y = event.pageY;
+  //   this.gordonEventService.moveMouse.next(this.mouse);
+  // }
+  //
+  // @HostListener('mousedown', ['$event'])
+  // onMousedown(event) {
+  //   this.mouse.mouseDown = true;
+  //   this.gordonEventService.mouseDown.next(this.mouse);
+  // }
 
 
 }

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {GordonEventService} from '../services/gordon-event.service';
 
 @Component({
   selector: 'gordon-toolbar-left',
@@ -9,9 +10,14 @@ export class ToolbarLeftComponent implements OnInit {
 
   color: string;
 
-  constructor() { }
+  constructor(private gordonEventService: GordonEventService) {
+  }
 
   ngOnInit() {
+  }
+
+  addNewColor(color) {
+    this.gordonEventService.setColor.next(color.value);
   }
 
 }

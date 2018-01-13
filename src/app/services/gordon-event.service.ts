@@ -6,6 +6,7 @@ export class GordonEventService {
 
   setHeight: Subject<any> = new Subject<any>();
   setWidth: Subject<any> = new Subject<any>();
+  setColor: Subject<any> = new Subject<any>();
 
   constructor() { }
 

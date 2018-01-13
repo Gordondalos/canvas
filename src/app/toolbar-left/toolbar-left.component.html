@@ -1,4 +1,4 @@
 <div>
   <small class="text-muted">цвет:</small>
 </div>
-<p-colorPicker [(ngModel)]="color"></p-colorPicker>
+<p-colorPicker [(ngModel)]="color" (onChange)="addNewColor($event)"></p-colorPicker>

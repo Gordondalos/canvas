@@ -17,6 +17,9 @@ export class ChoiseDirective {
     this.gordonEventService.setWidth.subscribe((width) => {
       this.setWidth(width);
     });
+    this.gordonEventService.setColor.subscribe((color) => {
+      this.setColor(color);
+    });
   }
 
 
@@ -31,6 +34,13 @@ export class ChoiseDirective {
     const element: any = document.getElementsByClassName('selected')[0];
     if (element) {
       element.style.width = this.width + width + 'px';
+    }
+  }
+
+  setColor(color) {
+    const element: any = document.getElementsByClassName('selected')[0];
+    if (element) {
+      element.style.backgroundColor = color;
     }
   }
 

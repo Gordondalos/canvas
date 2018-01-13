@@ -11,6 +11,7 @@ export class GordonEventService {
   mouseUp: Subject<any> = new Subject<any>();
   mouseDown: Subject<any> = new Subject<any>();
   removeSelected: Subject<any> = new Subject<any>();
+  setNewData: Subject<any> = new Subject<any>();
 
   constructor() { }
 

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import {DataService} from './services/data.service';
 
 @Component({
   selector: 'gordon-root',
@@ -9,6 +9,8 @@ import { Component } from '@angular/core';
 export class AppComponent {
   loader = true;
 
-  constructor() {
+  constructor(
+    private dataService: DataService) {
+    this.dataService.getData();
   }
 }

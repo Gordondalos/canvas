@@ -12,7 +12,6 @@ export class ChoiseDirective {
   height = 0;
   width = 0;
   mouse: MouseModel;
-
   onse = true;
 
   constructor(private el: ElementRef, private gordonEventService: GordonEventService) {
@@ -103,12 +102,16 @@ export class ChoiseDirective {
     if (this.el.nativeElement.contains(event.target)) {
       this.removeSelected();
       this.el.nativeElement.classList.toggle('selected');
-       if (this.onse) {
+      if (this.onse) {
         this.height = this.el.nativeElement.offsetHeight;
         this.width = this.el.nativeElement.offsetWidth;
         this.onse = false;
       }
     }
+  }
+
+  updateDataInLocalStorage() {
+
   }
 
 

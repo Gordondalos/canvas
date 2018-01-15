@@ -68,8 +68,8 @@ export class ChoiseDirective {
     if (element) {
       if (this.mouse.mouseDown) {
         const left = this.mouse.x - element.getBoundingClientRect().width * 1.5;
-        const  top = this.mouse.y - element.getBoundingClientRect().height;
-        element.style.left =  left + 'px';
+        const top = this.mouse.y - element.getBoundingClientRect().height;
+        element.style.left = left + 'px';
         element.style.top = top + 'px';
 
         const data = JSON.parse(localStorage.getItem('myContent'));
@@ -106,11 +106,14 @@ export class ChoiseDirective {
     if (element) {
       element.style.backgroundColor = color;
     }
+    this.setatributeLocaly(element, 'backgroundColor', 'bgColor');
+  }
 
+  setatributeLocaly(element, atributName, propName) {
     const data = JSON.parse(localStorage.getItem('myContent'));
     _.each(data, (item) => {
       if (item.key === element.id) {
-        item.attributes.bgColor = element.style.backgroundColor;
+        item.attributes[propName] = element.style[atributName];
         return;
       }
     });

@@ -15,14 +15,12 @@ import * as _ from 'lodash';
 })
 export class GordonComponent implements OnInit {
 
-  @ContentChild('mydata') mydata;
-  items;
+  items: any;
 
   constructor(private gordonEventService: GordonEventService, private dataService: DataService) {
     this.gordonEventService.setNewData.subscribe((newDate) => {
       this.setNewData(newDate);
     });
-
   }
 
   setNewData(newDate) {
@@ -50,8 +48,9 @@ export class NewCanvasComponent  {
   };
   data: any;
   myContent: any;
-  constructor(private dataService: DataService,
-              private gordonEventService: GordonEventService) {
+  constructor(
+    private dataService: DataService,
+    private gordonEventService: GordonEventService) {
     this.gordonEventService.setNewData.subscribe((newDate) => {
       this.setNewData(newDate);
     });
@@ -96,7 +95,7 @@ export class NewCanvasComponent  {
     localStorage.setItem('myContent', JSON.stringify(myData));
   }
 
-  addDenerateComponent() {
+  addGenerateComponent() {
     if (localStorage.getItem('myContent') && localStorage.getItem('myContent').length > 0) {
       const data = JSON.parse(localStorage.getItem('myContent'));
       this.setNewData(data);

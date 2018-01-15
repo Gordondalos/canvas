@@ -1,0 +1,13 @@
+@import "../../sass/variables";
+
+:host {
+  background: $orange;
+  width: calc(100vw - 120px);
+  height: calc(100vh - 120px);
+  position: absolute;
+  left: 120px;
+  top: 0;
+  padding: 1rem;
+  z-index: 0;
+}
+

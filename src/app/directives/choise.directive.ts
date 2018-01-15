@@ -25,7 +25,6 @@ export class ChoiseDirective {
       this.setColor(color);
     });
     this.gordonEventService.mouseDown.subscribe((mouse) => {
-      debugger
       this.mouse = mouse;
       this.mouseDown();
     });
@@ -67,6 +66,7 @@ export class ChoiseDirective {
 
   mouseMove() {
     const element: any = document.getElementsByClassName('selected')[0];
+    console.log(element);
     if (element) {
       if (this.mouse.mouseDown) {
         element.style.left = this.mouse.x - element.getBoundingClientRect().width * 1.5 + 'px';
@@ -98,19 +98,21 @@ export class ChoiseDirective {
     }
   }
 
-  @HostListener('document:click', ['$event'])
-  handleClick(event: Event) {
-    debugger
-    if (this.el.nativeElement.contains(event.target)) {
-      this.removeSelected();
-      this.el.nativeElement.classList.toggle('selected');
-      if (this.onse) {
-        this.height = this.el.nativeElement.offsetHeight;
-        this.width = this.el.nativeElement.offsetWidth;
-        this.onse = false;
-      }
-    }
-  }
+  // @HostListener('document:click', ['$event'])
+  // handleClick(event: Event) {
+  //   if (this.el.nativeElement.contains(event.target)) {
+  //     this.removeSelected();
+  //     debugger
+  //     if (this.el.nativeElement.classList === 'use') {
+  //       this.el.nativeElement.children[0].classList.toggleable('selected');
+  //     }
+  //     if (this.onse) {
+  //       this.height = this.el.nativeElement.children[0].offsetHeight;
+  //       this.width = this.el.nativeElement.children[0].offsetWidth;
+  //       this.onse = false;
+  //     }
+  //   }
+  // }
 
   updateDataInLocalStorage() {
 

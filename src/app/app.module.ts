@@ -11,6 +11,8 @@ import {GordonEventService} from './services/gordon-event.service';
 import {DataService} from './services/data.service';
 import {HttpClientModule} from '@angular/common/http';
 import {ChoiseDirective} from './directives/choise.directive';
+import {GordonComponent, NewCanvasComponent} from './new-canvas/new-canvas.component';
+
 
 
 
@@ -20,7 +22,10 @@ import {ChoiseDirective} from './directives/choise.directive';
     ToolbarLeftComponent,
     ToolbarBottomComponent,
     CanvasComponent,
-    ChoiseDirective
+    ChoiseDirective,
+    NewCanvasComponent,
+    GordonComponent
+
     ],
   imports: [
     BrowserModule,
@@ -31,6 +36,7 @@ import {ChoiseDirective} from './directives/choise.directive';
     BrowserAnimationsModule,
     HttpClientModule,
   ],
+  entryComponents: [GordonComponent],
   providers: [GordonEventService, DataService],
   bootstrap: [AppComponent]
 })

@@ -1,4 +1,4 @@
-import {Component, ContentChild, HostListener, Input, OnInit} from '@angular/core';
+import {Component,  HostListener, OnInit} from '@angular/core';
 import {MouseModel} from '../models/mouse.model';
 import {GordonEventService} from '../services/gordon-event.service';
 import {DataService} from '../services/data.service';

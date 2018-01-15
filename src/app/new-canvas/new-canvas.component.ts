@@ -13,24 +13,23 @@ import * as _ from 'lodash';
     </div>
   `,
 })
-export class GordonComponent implements OnInit {
 
-  items: any;
+export class GordonComponent {
 
-  constructor(private gordonEventService: GordonEventService, private dataService: DataService) {
-    this.gordonEventService.setNewData.subscribe((newDate) => {
-      this.setNewData(newDate);
-    });
-  }
+  // items: any;
+  // constructor(private gordonEventService: GordonEventService, private dataService: DataService) {
+  //   this.gordonEventService.setNewData.subscribe((newDate) => {
+  //     this.setNewData(newDate);
+  //   });
+  // }
+  //
+  // setNewData(newDate) {
+  //   // показываю что данные сюда прокидываются
+  //   console.log(newDate);
+  //   this.items = newDate;
+  // }
 
-  setNewData(newDate) {
-    // показываю что данные сюда прокидываются
-    console.log(newDate);
-    this.items = newDate;
-  }
 
-  ngOnInit() {
-  }
 }
 
 @Component({

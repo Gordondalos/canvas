@@ -12,7 +12,7 @@
     },
     "key": "1",
     "context": "IDomNode[]",
-    "text": ""
+    "text": "Четрые"
   },
   {
     "tag": "div",
@@ -27,6 +27,36 @@
     },
     "key": "2",
     "context": "IDomNode[]",
-    "text": "Привет"
+    "text": "Один"
+  },
+  {
+    "tag": "div",
+    "attributes": {
+      "class": "use",
+      "width": "100",
+      "height": "100",
+      "positionTop": "50",
+      "positionLeft": "120",
+      "bgColor": "green",
+      "color": "white"
+    },
+    "key": "3",
+    "context": "IDomNode[]",
+    "text": "Два"
+  },
+  {
+    "tag": "div",
+    "attributes": {
+      "class": "use",
+      "width": "100",
+      "height": "100",
+      "positionTop": "230",
+      "positionLeft": "250",
+      "bgColor": "blue",
+      "color": "white"
+    },
+    "key": "4",
+    "context": "IDomNode[]",
+    "text": "Три"
   }
 ]

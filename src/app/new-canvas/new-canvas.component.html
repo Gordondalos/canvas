@@ -1,1 +1,11 @@
-<ng-container *ngComponentOutlet="generateComponent; content: myContent"></ng-container>
+<span *ngFor="let item of myContent">
+  <ng-container
+    *ngComponentOutlet="generateComponent;
+     content: item">
+</ng-container>
+</span>
+
+<button class="btn btn-primary" (click)="addDenerateComponent()">Загрузить компоненты</button>
+
+
+

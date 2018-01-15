@@ -18,8 +18,8 @@
     "tag": "div",
     "attributes": {
       "class": "use",
-      "width": "200",
-      "height": "200",
+      "width": "100",
+      "height": "100",
       "positionTop": "216",
       "positionLeft": "216",
       "bgColor": "red",
@@ -27,6 +27,6 @@
     },
     "key": "2",
     "context": "IDomNode[]",
-    "text": "Привет это Я"
+    "text": "Привет"
   }
 ]

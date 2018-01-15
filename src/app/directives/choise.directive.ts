@@ -8,7 +8,6 @@ import * as _ from 'lodash';
 })
 export class ChoiseDirective {
 
-
   height = 0;
   width = 0;
   mouse: MouseModel;

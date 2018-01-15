@@ -2,15 +2,15 @@ import {Component, ContentChild, HostListener, Input, OnInit} from '@angular/cor
 import {MouseModel} from '../models/mouse.model';
 import {GordonEventService} from '../services/gordon-event.service';
 import {DataService} from '../services/data.service';
+import * as _ from 'lodash';
 
 
 @Component({
   selector: 'gordon-generate',
   template: `
-    <div gordonChoise *ngFor="let item of items">
+    <div gordonChoise>
       <ng-content></ng-content>
     </div>
-    <p>{{mydata | json}}</p>
   `,
 })
 export class GordonComponent implements OnInit {
@@ -26,13 +26,12 @@ export class GordonComponent implements OnInit {
   }
 
   setNewData(newDate) {
+    // показываю что данные сюда прокидываются
     console.log(newDate);
     this.items = newDate;
   }
 
   ngOnInit() {
-    this.dataService.getData();
-
   }
 }
 
@@ -55,20 +54,62 @@ export class NewCanvasComponent implements OnInit {
   data: any;
 
 
-  myContent = [];
+  myContent: any;
+  myContent2: any;
 
-  constructor(private gordonEventService: GordonEventService) {
+  constructor(private dataService: DataService,
+              private gordonEventService: GordonEventService) {
+    this.gordonEventService.setNewData.subscribe((newDate) => {
+      this.setNewData(newDate);
+    });
+  }
+
+  setNewData(myData) {
+    this.myContent = [];
+    this.data = myData;
+    _.each(myData, (item) => {
+      const element = document.createElement(item.tag);
+      if (item.attributes && item.attributes.class) {
+        element.classList.add(item.attributes.class);
+      }
+      if (item.attributes && item.attributes.width) {
+        element.style.width = item.attributes.width + 'px';
+      }
+      if (item.attributes && item.attributes.height) {
+        element.style.height = item.attributes.height + 'px';
+      }
+      if (item.attributes && item.attributes.positionTop) {
+        element.style.top = item.attributes.positionTop + 'px';
+      }
+      if (item.attributes && item.attributes.positionLeft) {
+        element.style.left = item.attributes.positionLeft + 'px';
+      }
+      if (item.attributes && item.attributes.bgColor) {
+        element.style.backgroundColor = item.attributes.bgColor;
+      }
+      if (item.attributes && item.attributes.color) {
+        element.style.color = item.attributes.color;
+      }
+      if (item.text) {
+        element.innerText = item.text;
+      }
+      this.myContent.push([[element]]);
+
+    });
+    localStorage.setItem('myContent', JSON.stringify(myData));
   }
 
   ngOnInit() {
-    const myDiv = document.createElement('div');
-    myDiv.classList.add('use');
-    myDiv.style.width = '100px';
-    myDiv.style.height = '100px';
+    if (localStorage.getItem('myContent') && localStorage.getItem('myContent').length > 0) {
+     const data = JSON.parse(localStorage.getItem('myContent'));
+      this.setNewData(data);
+      alert('Данные из localStorage');
+    } else {
+      alert('Запрос Данных');
+      this.dataService.getData();
+    }
 
-    this.myContent = [[myDiv],[myDiv]];
-
-    this.addDenerateComponent();
+    // this.addDenerateComponent();
   }
 
   addDenerateComponent() {
@@ -102,9 +143,11 @@ export class NewCanvasComponent implements OnInit {
 
   @HostListener('click', ['$event'])
   onClick(event: MouseEvent) {
+    this.gordonEventService.removeSelected.next();
     if (event.srcElement.classList[0] === 'use') {
       event.srcElement.classList.toggle('selected');
     }
   }
+
 
 }

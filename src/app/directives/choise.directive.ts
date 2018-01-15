@@ -66,7 +66,6 @@ export class ChoiseDirective {
 
   mouseMove() {
     const element: any = document.getElementsByClassName('selected')[0];
-    console.log(element);
     if (element) {
       if (this.mouse.mouseDown) {
         element.style.left = this.mouse.x - element.getBoundingClientRect().width * 1.5 + 'px';

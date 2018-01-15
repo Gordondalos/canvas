@@ -1,12 +1,13 @@
 import {Component, ContentChild, HostListener, Input, OnInit} from '@angular/core';
 import {MouseModel} from '../models/mouse.model';
 import {GordonEventService} from '../services/gordon-event.service';
+import {DataService} from '../services/data.service';
 
 
 @Component({
   selector: 'gordon-generate',
   template: `
-    <div gordonChoise>
+    <div gordonChoise *ngFor="let item of items">
       <ng-content></ng-content>
     </div>
     <p>{{mydata | json}}</p>
@@ -15,13 +16,22 @@ import {GordonEventService} from '../services/gordon-event.service';
 export class GordonComponent implements OnInit {
 
   @ContentChild('mydata') mydata;
+  items;
 
-  constructor(private gordonEventService: GordonEventService) {
+  constructor(private gordonEventService: GordonEventService, private dataService: DataService) {
+    this.gordonEventService.setNewData.subscribe((newDate) => {
+      this.setNewData(newDate);
+    });
 
   }
 
+  setNewData(newDate) {
+    console.log(newDate);
+    this.items = newDate;
+  }
+
   ngOnInit() {
-    console.log(this);
+    this.dataService.getData();
 
   }
 }
@@ -55,7 +65,8 @@ export class NewCanvasComponent implements OnInit {
     myDiv.classList.add('use');
     myDiv.style.width = '100px';
     myDiv.style.height = '100px';
-    this.myContent = [[myDiv]];
+
+    this.myContent = [[myDiv],[myDiv]];
 
     this.addDenerateComponent();
   }

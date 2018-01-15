@@ -67,8 +67,20 @@ export class ChoiseDirective {
     const element: any = document.getElementsByClassName('selected')[0];
     if (element) {
       if (this.mouse.mouseDown) {
-        element.style.left = this.mouse.x - element.getBoundingClientRect().width * 1.5 + 'px';
-        element.style.top = this.mouse.y - element.getBoundingClientRect().height + 'px';
+        const left = this.mouse.x - element.getBoundingClientRect().width * 1.5;
+        const  top = this.mouse.y - element.getBoundingClientRect().height;
+        element.style.left =  left + 'px';
+        element.style.top = top + 'px';
+
+        const data = JSON.parse(localStorage.getItem('myContent'));
+        _.each(data, (item) => {
+          if (item.key === element.id) {
+            item.attributes.positionTop = top;
+            item.attributes.positionLeft = left;
+            return;
+          }
+        });
+        localStorage.setItem('myContent', JSON.stringify(data));
       }
     }
 
@@ -94,27 +106,15 @@ export class ChoiseDirective {
     if (element) {
       element.style.backgroundColor = color;
     }
+
+    const data = JSON.parse(localStorage.getItem('myContent'));
+    _.each(data, (item) => {
+      if (item.key === element.id) {
+        item.attributes.bgColor = element.style.backgroundColor;
+        return;
+      }
+    });
+    localStorage.setItem('myContent', JSON.stringify(data));
   }
-
-  // @HostListener('document:click', ['$event'])
-  // handleClick(event: Event) {
-  //   if (this.el.nativeElement.contains(event.target)) {
-  //     this.removeSelected();
-  //     debugger
-  //     if (this.el.nativeElement.classList === 'use') {
-  //       this.el.nativeElement.children[0].classList.toggleable('selected');
-  //     }
-  //     if (this.onse) {
-  //       this.height = this.el.nativeElement.children[0].offsetHeight;
-  //       this.width = this.el.nativeElement.children[0].offsetWidth;
-  //       this.onse = false;
-  //     }
-  //   }
-  // }
-
-  updateDataInLocalStorage() {
-
-  }
-
 
 }

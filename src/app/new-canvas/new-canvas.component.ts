@@ -40,23 +40,16 @@ export class GordonComponent implements OnInit {
   templateUrl: './new-canvas.component.html',
   styleUrls: ['./new-canvas.component.scss']
 })
-export class NewCanvasComponent implements OnInit {
+export class NewCanvasComponent  {
 
   generateComponent: any;
-
   mouse: MouseModel = {
     x: 0,
     y: 0,
     mouseDown: false
   };
-
-  el: any;
   data: any;
-
-
   myContent: any;
-  myContent2: any;
-
   constructor(private dataService: DataService,
               private gordonEventService: GordonEventService) {
     this.gordonEventService.setNewData.subscribe((newDate) => {
@@ -93,26 +86,25 @@ export class NewCanvasComponent implements OnInit {
       if (item.text) {
         element.innerText = item.text;
       }
+      if (item.key ) {
+        element.id = item.key;
+      }
+
       this.myContent.push([[element]]);
 
     });
     localStorage.setItem('myContent', JSON.stringify(myData));
   }
 
-  ngOnInit() {
+  addDenerateComponent() {
     if (localStorage.getItem('myContent') && localStorage.getItem('myContent').length > 0) {
-     const data = JSON.parse(localStorage.getItem('myContent'));
+      const data = JSON.parse(localStorage.getItem('myContent'));
       this.setNewData(data);
       alert('Данные из localStorage');
     } else {
       alert('Запрос Данных');
       this.dataService.getData();
     }
-
-    // this.addDenerateComponent();
-  }
-
-  addDenerateComponent() {
     this.generateComponent = GordonComponent;
   }
 

@@ -25,6 +25,7 @@ export class ChoiseDirective {
       this.setColor(color);
     });
     this.gordonEventService.mouseDown.subscribe((mouse) => {
+      debugger
       this.mouse = mouse;
       this.mouseDown();
     });
@@ -33,7 +34,6 @@ export class ChoiseDirective {
       this.mouseUp();
     });
     this.gordonEventService.moveMouse.subscribe((mouse) => {
-      console.log(mouse);
       this.mouse = mouse;
       this.mouseMove();
     });
@@ -100,6 +100,7 @@ export class ChoiseDirective {
 
   @HostListener('document:click', ['$event'])
   handleClick(event: Event) {
+    debugger
     if (this.el.nativeElement.contains(event.target)) {
       this.removeSelected();
       this.el.nativeElement.classList.toggle('selected');

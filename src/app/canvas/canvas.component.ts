@@ -4,6 +4,7 @@ import {GordonEventService} from '../services/gordon-event.service';
 import {MouseModel} from '../models/mouse.model';
 import * as _ from 'lodash';
 import {EscapeHtmlPipe} from '../pipes/keephtml.pipe';
+import {ChoiseDirective} from '../directives/choise.directive';
 
 @Component({
   selector: 'gordon-canvas',
@@ -78,10 +79,10 @@ export class CanvasComponent implements OnInit {
         this.text = this.el;
       }
 
-      addData(data) {
-        this.data = data;
+      addData(myData) {
+        this.data = myData;
         const div = document.createElement('div');
-        _.each(data, (item) => {
+        _.each(myData, (item) => {
           const element = document.createElement(item.tag);
           element.setAttribute('gordonChoise', '');
           if (item.attributes && item.attributes.class) {
@@ -129,11 +130,11 @@ export class CanvasComponent implements OnInit {
         this.mouse.x = event.pageX;
         this.mouse.y = event.pageY;
         this.gordonEventService.moveMouse.next(this.mouse);
-         console.log(this.mouse);
-      }
+        }
 
       @HostListener('mousedown', ['$event'])
-      onMousedown(event) {
+      onMousedown(event: MouseEvent) {
+        event.srcElement.classList.toggle('selected');
         this.mouse.mouseDown = true;
         this.gordonEventService.mouseDown.next(this.mouse);
       }
@@ -148,8 +149,9 @@ export class CanvasComponent implements OnInit {
       imports: [],
       declarations: [
         componentType,
-        EscapeHtmlPipe
+        EscapeHtmlPipe,
       ],
+      providers: [],
       entryComponents: [componentType]
     })
     class RuntimeComponentModule {
@@ -161,31 +163,6 @@ export class CanvasComponent implements OnInit {
 
   ngOnInit() {
   }
-
-  // @HostListener('dblclick')
-  // ondblclick() {
-  //   this.gordonEventService.removeSelected.next();
-  // }
-  //
-  //
-  // @HostListener('mouseup')
-  // onMouseup() {
-  //   this.mouse.mouseDown = false;
-  //   this.gordonEventService.mouseUp.next(this.mouse);
-  // }
-  //
-  // @HostListener('mousemove', ['$event'])
-  // onMousemove(event: MouseEvent) {
-  //   this.mouse.x = event.pageX;
-  //   this.mouse.y = event.pageY;
-  //   this.gordonEventService.moveMouse.next(this.mouse);
-  // }
-  //
-  // @HostListener('mousedown', ['$event'])
-  // onMousedown(event) {
-  //   this.mouse.mouseDown = true;
-  //   this.gordonEventService.mouseDown.next(this.mouse);
-  // }
 
 
 }

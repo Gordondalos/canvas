@@ -7,10 +7,10 @@ import {ToolbarLeftComponent} from './toolbar-left/toolbar-left.component';
 import {ToolbarBottomComponent} from './toolbar-bottom/toolbar-bottom.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {CanvasComponent} from './canvas/canvas.component';
-import {ChoiseDirective} from './directives/choise.directive';
 import {GordonEventService} from './services/gordon-event.service';
 import {DataService} from './services/data.service';
 import {HttpClientModule} from '@angular/common/http';
+import {ChoiseDirective} from './directives/choise.directive';
 
 
 
@@ -20,7 +20,7 @@ import {HttpClientModule} from '@angular/common/http';
     ToolbarLeftComponent,
     ToolbarBottomComponent,
     CanvasComponent,
-    ChoiseDirective,
+    ChoiseDirective
     ],
   imports: [
     BrowserModule,

@@ -11,6 +11,7 @@ import {DataService} from './services/data.service';
 import {HttpClientModule} from '@angular/common/http';
 import {ChoiseDirective} from './directives/choise.directive';
 import {GordonComponent, NewCanvasComponent} from './new-canvas/new-canvas.component';
+import { QweComponent } from './qwe/qwe.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import {GordonComponent, NewCanvasComponent} from './new-canvas/new-canvas.compo
     ChoiseDirective,
     NewCanvasComponent,
     GordonComponent,
+    QweComponent,
     ],
   imports: [
     BrowserModule,
